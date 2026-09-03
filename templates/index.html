@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Andrey AI Lab — ИИ-ассистенты для бизнеса{% endblock %}
+
+{% block meta_description %}Андрей Семенов создаёт чат-ботов и ИИ-ассистентов для бизнеса: автоматизация поддержки, поиск по документам, приём заявок 24/7. 25 лет опыта в управлении процессами.{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="container">
+        <div class="hero__eyebrow">
+            <span class="section-number">00</span>
+            <span class="hero__label">Андрей Семенов — ИИ-ассистенты для бизнеса</span>
+        </div>
+        <h1 class="hero__title">
+            Создаю чат-ботов, которые отвечают клиентам по вашим документам, принимают заявки и снимают рутину с менеджеров.
+        </h1>
+        <p class="hero__lead">
+            25 лет управлял бизнес-процессами в крупных компаниях — поэтому делаю решения, которые работают, а не пылятся.
+        </p>
+        <div class="hero__actions">
+            <a href="{{ telegram_url }}" class="btn btn--primary" target="_blank" rel="noopener">Обсудить задачу</a>
+            <a href="{{ url_for('contact') }}" class="btn btn--secondary">Оставить заявку</a>
+        </div>
+    </div>
+</section>
+
+<section class="section benefits">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Польза для бизнеса</h2>
+        </div>
+        <div class="benefits-grid">
+            {% for item in benefits %}
+            <article class="benefit-card">
+                <span class="benefit-card__number">{{ item.number }}</span>
+                <h3 class="benefit-card__title">{{ item.title }}</h3>
+                <p class="benefit-card__text">{{ item.text }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section cases-preview">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Кейсы</h2>
+        </div>
+        <div class="cases-grid">
+            {% for case in cases %}
+            <article class="case-card">
+                <div class="case-card__top">
+                    <span class="case-card__number">{{ case.number }}</span>
+                    <div class="case-card__tags">
+                        {% for tag in case.tags %}
+                        <span class="pill">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <h3 class="case-card__title">{{ case.title }}</h3>
+                <p class="case-card__text">{{ case.short }}</p>
+                <a href="{{ url_for('case_detail', slug=case.slug) }}" class="case-card__link">Подробнее →</a>
+            </article>
+            {% endfor %}
+        </div>
+        <div class="section-action">
+            <a href="{{ url_for('cases') }}" class="btn btn--secondary">Все кейсы</a>
+        </div>
+    </div>
+</section>
+
+<section class="section process">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Как я работаю</h2>
+        </div>
+        <div class="process-steps">
+            {% for step in steps %}
+            <article class="step-card">
+                <span class="step-card__number">{{ step.number }}</span>
+                <h3 class="step-card__title">{{ step.title }}</h3>
+                <p class="step-card__text">{{ step.text }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section cta">
+    <div class="container cta-inner">
+        <div class="cta__content">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Готовы обсудить задачу?</h2>
+            <p class="cta__text">
+                Расскажите, какой процесс хотите автоматизировать. Отвечу в течение рабочего дня.
+            </p>
+        </div>
+        <div class="cta__actions">
+            <a href="{{ url_for('contact') }}" class="btn btn--primary">Перейти к форме</a>
+            <a href="{{ telegram_url }}" class="btn btn--ghost" target="_blank" rel="noopener">Написать в Telegram</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

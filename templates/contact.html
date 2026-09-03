@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Контакты — Andrey AI Lab{% endblock %}
+
+{% block meta_description %}Свяжитесь с Андреем Семеновым для разработки ИИ-ассистента или чат-бота для бизнеса. Форма обратной связи и Telegram.{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h1 class="page-title">Контакты</h1>
+        </div>
+        <p class="page-lead">
+            Расскажите о задаче — я отвечу в течение рабочего дня и предложу варианты решения.
+        </p>
+    </div>
+</section>
+
+<section class="section contact-section">
+    <div class="container contact__grid">
+        <div class="contact__info">
+            <h2 class="contact__subtitle">Как со мной связаться</h2>
+            <ul class="contact__list">
+                <li>
+                    <span class="contact__label">Telegram</span>
+                    <a href="{{ telegram_url }}" target="_blank" rel="noopener">{{ telegram_url }}</a>
+                </li>
+                <li>
+                    <span class="contact__label">Форма</span>
+                    <span>Заполните форму справа — заявка сохранится и я получу уведомление.</span>
+                </li>
+            </ul>
+            <p class="contact__note">
+                Обычно отвечаю в течение нескольких часов. Если задача срочная — лучше напишите в Telegram.
+            </p>
+        </div>
+
+        <div class="contact__form-wrapper">
+            <form method="POST" action="{{ url_for('contact') }}" class="contact-form" novalidate>
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(class="form-input", placeholder="Ваше имя") }}
+                    {% if form.name.errors %}
+                        <span class="form-error">{{ form.name.errors[0] }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form.email.label(class="form-label") }}
+                        {{ form.email(class="form-input", placeholder="email@example.com") }}
+                        {% if form.email.errors %}
+                            <span class="form-error">{{ form.email.errors[0] }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.phone.label(class="form-label") }}
+                        {{ form.phone(class="form-input", placeholder="+7 (999) 000-00-00") }}
+                        {% if form.phone.errors %}
+                            <span class="form-error">{{ form.phone.errors[0] }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form.subject.label(class="form-label") }}
+                    {{ form.subject(class="form-select") }}
+                    {% if form.subject.errors %}
+                        <span class="form-error">{{ form.subject.errors[0] }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.message.label(class="form-label") }}
+                    {{ form.message(class="form-textarea", rows=6, placeholder="Опишите задачу или задайте вопрос...") }}
+                    {% if form.message.errors %}
+                        <span class="form-error">{{ form.message.errors[0] }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="form-actions">
+                    {{ form.submit(class="btn btn--primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

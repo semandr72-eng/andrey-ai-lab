@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Вход в админ-панель — Andrey AI Lab{% endblock %}
+
+{% block meta_description %}Вход в админ-панель Andrey AI Lab.{% endblock %}
+
+{% block content %}
+
+<section class="section admin-section">
+    <div class="container admin-login">
+        <div class="section-header">
+            <span class="section-number">00</span>
+            <h1 class="page-title">Вход в админ-панель</h1>
+        </div>
+
+        <form method="POST" action="{{ url_for('admin_login') }}" class="admin-form" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-input", placeholder="admin", autofocus=true) }}
+                {% if form.username.errors %}
+                    <span class="form-error">{{ form.username.errors[0] }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-input", placeholder="••••••••") }}
+                {% if form.password.errors %}
+                    <span class="form-error">{{ form.password.errors[0] }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-actions">
+                {{ form.submit(class="btn btn--primary") }}
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

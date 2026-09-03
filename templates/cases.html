@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Кейсы — Andrey AI Lab{% endblock %}
+
+{% block meta_description %}Кейсы ИИ-ассистентов и чат-ботов для бизнеса: RAG-бот для рекламации, HR-ассистент, SMM-бот, BondAI для инвесторов, многоагентная система OrderHunter.{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h1 class="page-title">Кейсы</h1>
+        </div>
+        <p class="page-lead">
+            Реальные проекты чат-ботов и ИИ-ассистентов для бизнеса: от поддержки клиентов до анализа финансовых данных.
+        </p>
+    </div>
+</section>
+
+<section class="section cases-list">
+    <div class="container">
+        <div class="cases-grid cases-grid--large">
+            {% for case in cases %}
+            <article class="case-card case-card--large">
+                <div class="case-card__visual">
+                    <img src="{{ url_for('static', filename='images/' + case.image) }}" alt="{{ case.title }}" loading="lazy">
+                </div>
+                <div class="case-card__body">
+                    <div class="case-card__top">
+                        <span class="case-card__number">{{ case.number }}</span>
+                        <div class="case-card__tags">
+                            {% for tag in case.tags %}
+                            <span class="pill">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <h2 class="case-card__title">{{ case.title }}</h2>
+                    <p class="case-card__text">{{ case.short }}</p>
+                    <a href="{{ url_for('case_detail', slug=case.slug) }}" class="btn btn--secondary">Подробнее</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

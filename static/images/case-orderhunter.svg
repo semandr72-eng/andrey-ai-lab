@@ -1,0 +1,14 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#F3F3F3"/>
+  <rect x="80" y="120" width="140" height="140" rx="20" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="250" y="120" width="140" height="140" rx="20" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="420" y="120" width="140" height="140" rx="20" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <circle cx="150" cy="190" r="24" fill="#111"/>
+  <circle cx="320" cy="190" r="24" fill="#555"/>
+  <circle cx="490" cy="190" r="24" fill="#888"/>
+  <path d="M220 190 H250" stroke="#D0D0D0" stroke-width="2"/>
+  <path d="M390 190 H420" stroke="#D0D0D0" stroke-width="2"/>
+  <rect x="220" y="300" width="200" height="10" rx="5" fill="#111"/>
+  <rect x="220" y="322" width="240" height="8" rx="4" fill="#888"/>
+  <text x="80" y="96" font-family="JetBrains Mono, monospace" font-size="13" fill="#888">05 / ORDERHUNTER</text>
+</svg>

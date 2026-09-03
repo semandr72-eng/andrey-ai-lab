@@ -1,0 +1,11 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#F3F3F3"/>
+  <rect x="80" y="100" width="480" height="240" rx="24" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <circle cx="180" cy="180" r="36" fill="#111"/>
+  <rect x="240" y="160" width="180" height="12" rx="6" fill="#111"/>
+  <rect x="240" y="188" width="260" height="10" rx="5" fill="#888"/>
+  <rect x="240" y="212" width="220" height="10" rx="5" fill="#888"/>
+  <rect x="120" y="280" width="400" height="1" fill="#E5E5E5"/>
+  <rect x="120" y="300" width="320" height="10" rx="5" fill="#D0D0D0"/>
+  <text x="80" y="76" font-family="JetBrains Mono, monospace" font-size="13" fill="#888">02 / HR ASSISTANT</text>
+</svg>

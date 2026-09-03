@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% set meta_title = self.title() %}
+    {% set canonical_url = request.url_root.rstrip('/') + request.path %}
+    {% set og_image = request.url_root.rstrip('/') + url_for('static', filename='images/og-image.png') %}
+
+    <title>{{ meta_title }}</title>
+    <meta name="description" content="{% block meta_description %}Андрей Семенов — ИИ-ассистенты для бизнеса: чат-боты, автоматизация поддержки, поиск по документам.{% endblock %}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:site_name" content="Andrey AI Lab">
+    <meta property="og:title" content="{{ meta_title }}">
+    <meta property="og:description" content="{{ self.meta_description() }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:image" content="{{ og_image }}">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ meta_title }}">
+    <meta name="twitter:description" content="{{ self.meta_description() }}">
+    <meta name="twitter:image" content="{{ og_image }}">
+
+    <!-- Иконки -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Стили -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    {% block structured_data %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Andrey AI Lab",
+        "description": "{{ meta_desc }}",
+        "url": "{{ request.url_root.rstrip('/') }}",
+        "logo": "{{ request.url_root.rstrip('/') + url_for('static', filename='images/logo.png') }}",
+        "image": "{{ og_image }}",
+        "founder": {
+            "@type": "Person",
+            "name": "Андрей Семенов"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Заказать консультацию",
+            "url": "{{ telegram_url }}"
+        },
+        "sameAs": [
+            "{{ telegram_url }}"
+        ]
+    }
+    </script>
+    {% endblock %}
+</head>
+<body>
+    <!-- Гравитационный фон: плавающие фигуры и фрагменты кода -->
+    <div class="gravity-bg" aria-hidden="true">
+        <div class="gravity-layer gravity-layer--back" data-parallax="0.02">
+            <span class="gravity-shape gravity-shape--circle gravity-shape--xl"></span>
+            <span class="gravity-shape gravity-shape--circle gravity-shape--lg"></span>
+            <span class="gravity-shape gravity-shape--circle gravity-shape--lg-2"></span>
+            <span class="gravity-shape gravity-shape--line gravity-shape--diagonal-1"></span>
+            <span class="gravity-shape gravity-shape--line gravity-shape--diagonal-2"></span>
+            <span class="gravity-code gravity-code--a">def answer(question):</span>
+            <span class="gravity-code gravity-code--b">context = docs.similarity_search(query)</span>
+            <span class="gravity-code gravity-code--c">retriever = vectorstore.as_retriever()</span>
+            <span class="gravity-code gravity-code--d">chain = prompt | llm | output_parser</span>
+            <span class="gravity-code gravity-code--e">vectorstore = Chroma.from_documents(docs, embeddings)</span>
+            <span class="gravity-code gravity-code--f">session.add(message)</span>
+            <span class="gravity-code gravity-code--g">db.commit()</span>
+            <span class="gravity-code gravity-code--h">scraped = await fetch_tenders()</span>
+        </div>
+        <div class="gravity-layer gravity-layer--mid" data-parallax="0.04">
+            <span class="gravity-shape gravity-shape--circle gravity-shape--md"></span>
+            <span class="gravity-shape gravity-shape--circle gravity-shape--md-2"></span>
+            <span class="gravity-shape gravity-shape--circle gravity-shape--md-3"></span>
+            <span class="gravity-shape gravity-shape--dot gravity-shape--dot-1"></span>
+            <span class="gravity-shape gravity-shape--dot gravity-shape--dot-2"></span>
+            <span class="gravity-shape gravity-shape--dot gravity-shape--dot-3"></span>
+            <span class="gravity-shape gravity-shape--line gravity-shape--vertical-1"></span>
+            <span class="gravity-shape gravity-shape--line gravity-shape--vertical-2"></span>
+            <span class="gravity-shape gravity-shape--line gravity-shape--horizontal-1"></span>
+            <span class="gravity-shape gravity-shape--line gravity-shape--horizontal-2"></span>
+            <span class="gravity-code gravity-code--i">if confidence > 0.85:</span>
+            <span class="gravity-code gravity-code--j">return response</span>
+            <span class="gravity-code gravity-code--k">messages = history + [HumanMessage(query)]</span>
+            <span class="gravity-code gravity-code--l">tool_calls = model.bind_tools(tools)</span>
+            <span class="gravity-code gravity-code--m">response = llm.invoke(messages)</span>
+            <span class="gravity-code gravity-code--n">async def handle_update(update):</span>
+            <span class="gravity-code gravity-code--o">router = Router()</span>
+            <span class="gravity-code gravity-code--p">ranked = sorted(candidates, key=score)</span>
+        </div>
+        <div class="gravity-layer gravity-layer--front" data-parallax="0.06">
+            <span class="gravity-shape gravity-shape--circle gravity-shape--sm"></span>
+            <span class="gravity-shape gravity-shape--circle gravity-shape--sm-2"></span>
+            <span class="gravity-shape gravity-shape--circle gravity-shape--sm-3"></span>
+            <span class="gravity-shape gravity-shape--circle gravity-shape--sm-4"></span>
+            <span class="gravity-shape gravity-shape--line gravity-shape--diagonal-3"></span>
+            <span class="gravity-shape gravity-shape--line gravity-shape--horizontal-3"></span>
+            <span class="gravity-code gravity-code--q">agent.run()</span>
+            <span class="gravity-code gravity-code--r">await bot.process(message)</span>
+            <span class="gravity-code gravity-code--s">threading.Thread(target=worker).start()</span>
+            <span class="gravity-code gravity-code--t">state = {"messages": []}</span>
+            <span class="gravity-code gravity-code--u">graph = builder.compile()</span>
+            <span class="gravity-code gravity-code--v">prompt = ChatPromptTemplate.from_messages([...])</span>
+            <span class="gravity-code gravity-code--w">dispatcher = Dispatcher(bot=bot)</span>
+            <span class="gravity-code gravity-code--x">@dp.message(Command("start"))</span>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="{{ url_for('index') }}" class="logo">
+                <img src="{{ url_for('static', filename='images/logo-small.png') }}" alt="Andrey AI Lab" class="logo__img" width="48" height="48">
+                <span class="logo__text">Andrey AI Lab</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Основная навигация">
+                <a href="{{ url_for('cases') }}" class="nav-link{% if request.endpoint == 'cases' %} is-active{% endif %}">Кейсы</a>
+                <a href="{{ url_for('about') }}" class="nav-link{% if request.endpoint == 'about' %} is-active{% endif %}">Обо мне</a>
+                <a href="{{ url_for('contact') }}" class="nav-link{% if request.endpoint == 'contact' %} is-active{% endif %}">Контакты</a>
+            </nav>
+
+            <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-wrapper container">
+                    {% for category, message in messages %}
+                        <div class="flash flash--{{ category }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer__left">
+                <a href="{{ url_for('index') }}" class="footer__logo">
+                    <img src="{{ url_for('static', filename='images/logo-small.png') }}" alt="Andrey AI Lab" class="footer__logo-img" width="32" height="32">
+                    <span>Andrey AI Lab</span>
+                </a>
+                <p class="footer__copy">© 2025 Андрей Семенов. Все права защищены.</p>
+            </div>
+            <div class="footer__links">
+                <a href="{{ url_for('cases') }}">Кейсы</a>
+                <a href="{{ url_for('about') }}">Обо мне</a>
+                <a href="{{ url_for('contact') }}">Контакты</a>
+                <a href="{{ url_for('admin_login') }}">Админ</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+</body>
+</html>

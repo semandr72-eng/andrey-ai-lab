@@ -1,0 +1,10 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#F3F3F3"/>
+  <rect x="80" y="130" width="480" height="160" rx="24" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <circle cx="140" cy="190" r="28" fill="#111"/>
+  <rect x="190" y="170" width="220" height="12" rx="6" fill="#111"/>
+  <rect x="190" y="198" width="160" height="10" rx="5" fill="#888"/>
+  <rect x="520" y="170" width="24" height="24" rx="12" fill="#16A34A"/>
+  <rect x="120" y="250" width="200" height="10" rx="5" fill="#D0D0D0"/>
+  <text x="80" y="96" font-family="JetBrains Mono, monospace" font-size="13" fill="#888">01 / RECLAMATION BOT</text>
+</svg>
