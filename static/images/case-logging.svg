@@ -1,0 +1,19 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#F3F3F3"/>
+  <rect x="80" y="120" width="200" height="140" rx="20" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="360" y="120" width="200" height="140" rx="20" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="104" y="150" width="120" height="8" rx="4" fill="#111"/>
+  <rect x="104" y="172" width="152" height="6" rx="3" fill="#888"/>
+  <rect x="104" y="190" width="100" height="6" rx="3" fill="#888"/>
+  <rect x="104" y="208" width="132" height="6" rx="3" fill="#D0D0D0"/>
+  <circle cx="180" cy="230" r="12" fill="#111"/>
+  <rect x="384" y="150" width="120" height="8" rx="4" fill="#111"/>
+  <rect x="384" y="172" width="132" height="6" rx="3" fill="#888"/>
+  <rect x="384" y="190" width="90" height="6" rx="3" fill="#888"/>
+  <rect x="384" y="208" width="120" height="6" rx="3" fill="#D0D0D0"/>
+  <circle cx="460" cy="230" r="12" fill="#555"/>
+  <path d="M280 190 H360" stroke="#D0D0D0" stroke-width="2"/>
+  <rect x="220" y="300" width="200" height="10" rx="5" fill="#111"/>
+  <rect x="220" y="322" width="240" height="8" rx="4" fill="#888"/>
+  <text x="80" y="96" font-family="JetBrains Mono, monospace" font-size="13" fill="#888">06 / RAG LOGGING</text>
+</svg>

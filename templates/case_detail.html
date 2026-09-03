@@ -28,7 +28,7 @@
                 <p class="case-page__lead">{{ case.short }}</p>
                 <div class="case-page__details">
                     <h2 class="case-page__subtitle">О проекте</h2>
-                    <p>{{ case.details }}</p>
+                    <p>{{ case.details | safe }}</p>
                 </div>
 
                 {% if case.github %}
