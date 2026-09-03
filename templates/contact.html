@@ -82,6 +82,14 @@
                     {% endif %}
                 </div>
 
+                <div class="form-group form-consent">
+                    {{ form.consent(class="form-checkbox") }}
+                    {{ form.consent.label(class="form-checkbox-label") }}
+                    {% if form.consent.errors %}
+                        <span class="form-error">{{ form.consent.errors[0] }}</span>
+                    {% endif %}
+                </div>
+
                 <div class="form-actions">
                     {{ form.submit(class="btn btn--primary") }}
                 </div>

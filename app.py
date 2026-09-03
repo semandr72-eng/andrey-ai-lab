@@ -20,7 +20,7 @@ from flask_login import (
 )
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
-from wtforms import StringField, TextAreaField, SubmitField, SelectField, PasswordField
+from wtforms import StringField, TextAreaField, SubmitField, SelectField, PasswordField, BooleanField
 from wtforms.validators import DataRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -143,6 +143,10 @@ class ContactForm(FlaskForm):
             DataRequired(message='Напишите сообщение'),
             Length(min=10, max=5000, message='Сообщение от 10 до 5000 символов')
         ]
+    )
+    consent = BooleanField(
+        'Согласен на обработку персональных данных',
+        validators=[DataRequired(message='Необходимо согласие на обработку персональных данных')]
     )
     submit = SubmitField('Отправить сообщение')
 
@@ -370,6 +374,12 @@ def about():
     return render_template('about.html')
 
 
+@app.route('/privacy/')
+def privacy():
+    """Политика конфиденциальности."""
+    return render_template('privacy.html')
+
+
 @app.route('/contact/', methods=['GET', 'POST'])
 def contact():
     """Страница с формой обратной связи."""
@@ -494,6 +504,7 @@ def sitemap_xml():
         {'loc': url_for('cases', _external=True), 'priority': '0.8'},
         {'loc': url_for('about', _external=True), 'priority': '0.7'},
         {'loc': url_for('contact', _external=True), 'priority': '0.8'},
+        {'loc': url_for('privacy', _external=True), 'priority': '0.3'},
     ]
 
     for case in CASES:

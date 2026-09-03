@@ -12,7 +12,7 @@
 
 ### Ссылка на Telegram
 
-`https://t.me/semandr72` (вынесена в `config.py`).
+`https://t.me/a7onoff72` (вынесена в `config.py`).
 
 ---
 
