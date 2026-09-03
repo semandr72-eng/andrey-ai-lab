@@ -23,7 +23,7 @@ class Config:
     # Telegram для кнопки «Обсудить задачу»
     TELEGRAM_URL = os.environ.get(
         'TELEGRAM_URL',
-        'https://t.me/semandr72'
+        'https://t.me/a7onoff72'
     )
 
     # Администратор (в production используйте переменные окружения)
