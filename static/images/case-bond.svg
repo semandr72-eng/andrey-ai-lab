@@ -1,0 +1,12 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#F3F3F3"/>
+  <rect x="80" y="100" width="480" height="240" rx="24" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <path d="M120 300 L200 240 L280 260 L360 180 L440 200 L520 120" stroke="#111" stroke-width="2" fill="none" stroke-linejoin="round"/>
+  <circle cx="200" cy="240" r="6" fill="#111"/>
+  <circle cx="280" cy="260" r="6" fill="#111"/>
+  <circle cx="360" cy="180" r="6" fill="#111"/>
+  <circle cx="440" cy="200" r="6" fill="#111"/>
+  <rect x="120" y="140" width="120" height="10" rx="5" fill="#111"/>
+  <rect x="120" y="162" width="200" height="8" rx="4" fill="#888"/>
+  <text x="80" y="76" font-family="JetBrains Mono, monospace" font-size="13" fill="#888">04 / BONDAI</text>
+</svg>

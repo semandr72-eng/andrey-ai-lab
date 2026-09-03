@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Админ-панель — Andrey AI Lab{% endblock %}
+
+{% block meta_description %}Админ-панель Andrey AI Lab: управление заявками.{% endblock %}
+
+{% block content %}
+
+<section class="section admin-section">
+    <div class="container">
+        <div class="admin-header">
+            <div class="section-header">
+                <span class="section-number">00</span>
+                <h1 class="page-title">Заявки</h1>
+            </div>
+            <a href="{{ url_for('admin_logout') }}" class="btn btn--secondary">Выйти</a>
+        </div>
+
+        {% if messages.items %}
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Дата</th>
+                            <th>Имя</th>
+                            <th>Email</th>
+                            <th>Телефон</th>
+                            <th>Тема</th>
+                            <th>Сообщение</th>
+                            <th>Статус</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for msg in messages.items %}
+                        <tr class="{% if not msg.is_read %}admin-table__row--unread{% endif %}">
+                            <td data-label="ID">{{ msg.id }}</td>
+                            <td data-label="Дата">{{ msg.created_at.strftime('%d.%m.%Y %H:%M') }}</td>
+                            <td data-label="Имя">{{ msg.name }}</td>
+                            <td data-label="Email"><a href="mailto:{{ msg.email }}">{{ msg.email }}</a></td>
+                            <td data-label="Телефон">{{ msg.phone or '—' }}</td>
+                            <td data-label="Тема">{{ msg.subject_label() }}</td>
+                            <td data-label="Сообщение">
+                                <div class="admin-message">{{ msg.message }}</div>
+                            </td>
+                            <td data-label="Статус">
+                                {% if msg.is_read %}
+                                    <span class="pill pill--success">Прочитано</span>
+                                {% else %}
+                                    <span class="pill">Новое</span>
+                                {% endif %}
+                            </td>
+                            <td data-label="Действия">
+                                <div class="admin-actions">
+                                    <form method="POST" action="{{ url_for('admin_mark_read', message_id=msg.id) }}">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn--small btn--secondary">
+                                            {{ 'В непрочитанные' if msg.is_read else 'Отметить прочитанным' }}
+                                        </button>
+                                    </form>
+                                    <form method="POST" action="{{ url_for('admin_delete_message', message_id=msg.id) }}" onsubmit="return confirm('Удалить заявку #{{ msg.id }}?');">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn--small btn--danger">Удалить</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% if messages.pages > 1 %}
+            <nav class="pagination" aria-label="Страницы заявок">
+                {% if messages.has_prev %}
+                    <a href="{{ url_for('admin_dashboard', page=messages.prev_num) }}" class="btn btn--ghost">← Назад</a>
+                {% endif %}
+                <span class="pagination__info">Страница {{ messages.page }} из {{ messages.pages }}</span>
+                {% if messages.has_next %}
+                    <a href="{{ url_for('admin_dashboard', page=messages.next_num) }}" class="btn btn--ghost">Вперёд →</a>
+                {% endif %}
+            </nav>
+            {% endif %}
+        {% else %}
+            <p class="admin-empty">Заявок пока нет.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

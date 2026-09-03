@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ case.title }} — Andrey AI Lab{% endblock %}
+
+{% block meta_description %}{{ case.short }}{% endblock %}
+
+{% block content %}
+
+<article class="case-page">
+    <div class="container">
+        <header class="case-page__header">
+            <div class="section-header">
+                <span class="section-number">{{ case.number }}</span>
+                <h1 class="page-title">{{ case.title }}</h1>
+            </div>
+            <div class="case-page__tags">
+                {% for tag in case.tags %}
+                <span class="pill">{{ tag }}</span>
+                {% endfor %}
+            </div>
+        </header>
+
+        <div class="case-page__layout">
+            <div class="case-page__visual">
+                <img src="{{ url_for('static', filename='images/' + case.image) }}" alt="{{ case.title }}">
+            </div>
+            <div class="case-page__content">
+                <p class="case-page__lead">{{ case.short }}</p>
+                <div class="case-page__details">
+                    <h2 class="case-page__subtitle">О проекте</h2>
+                    <p>{{ case.details }}</p>
+                </div>
+
+                {% if case.github %}
+                <div class="case-page__links">
+                    <a href="{{ case.github }}" class="btn btn--primary" target="_blank" rel="noopener">
+                        Посмотреть на GitHub
+                    </a>
+                </div>
+                {% else %}
+                <div class="case-page__links">
+                    <span class="pill pill--muted">Проект в разработке</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="case-page__footer">
+            <a href="{{ url_for('cases') }}" class="btn btn--ghost">← Все кейсы</a>
+        </div>
+    </div>
+</article>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#F3F3F3"/>
+  <rect x="140" y="90" width="360" height="260" rx="24" fill="white" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="180" y="140" width="280" height="120" rx="12" fill="#F9F9F9" stroke="#E5E5E5" stroke-width="1"/>
+  <rect x="200" y="160" width="160" height="10" rx="5" fill="#111"/>
+  <rect x="200" y="182" width="200" height="8" rx="4" fill="#888"/>
+  <rect x="200" y="202" width="140" height="8" rx="4" fill="#888"/>
+  <rect x="200" y="230" width="80" height="10" rx="5" fill="#111"/>
+  <rect x="300" y="230" width="80" height="10" rx="5" fill="#D0D0D0"/>
+  <rect x="400" y="230" width="40" height="10" rx="5" fill="#D0D0D0"/>
+  <text x="140" y="66" font-family="JetBrains Mono, monospace" font-size="13" fill="#888">03 / SMM ASSISTANT</text>
+</svg>
