@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Логи
+logs/
+
+# IDE
+.idea/
+
+# Локальное окружение
+.venv/
+venv/
