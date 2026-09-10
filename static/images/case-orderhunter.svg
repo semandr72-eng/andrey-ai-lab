@@ -1,14 +1,77 @@
 <svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="640" height="420" fill="#F3F3F3"/>
-  <rect x="80" y="120" width="140" height="140" rx="20" fill="white" stroke="#E5E5E5" stroke-width="1"/>
-  <rect x="250" y="120" width="140" height="140" rx="20" fill="white" stroke="#E5E5E5" stroke-width="1"/>
-  <rect x="420" y="120" width="140" height="140" rx="20" fill="white" stroke="#E5E5E5" stroke-width="1"/>
-  <circle cx="150" cy="190" r="24" fill="#111"/>
-  <circle cx="320" cy="190" r="24" fill="#555"/>
-  <circle cx="490" cy="190" r="24" fill="#888"/>
-  <path d="M220 190 H250" stroke="#D0D0D0" stroke-width="2"/>
-  <path d="M390 190 H420" stroke="#D0D0D0" stroke-width="2"/>
-  <rect x="220" y="300" width="200" height="10" rx="5" fill="#111"/>
-  <rect x="220" y="322" width="240" height="8" rx="4" fill="#888"/>
-  <text x="80" y="96" font-family="JetBrains Mono, monospace" font-size="13" fill="#888">05 / ORDERHUNTER</text>
+
+  <!-- метки регистрации -->
+  <path d="M36 44 V36 H44" stroke="#D0D0D0"/>
+  <path d="M604 44 V36 H596" stroke="#D0D0D0"/>
+  <path d="M36 376 V384 H44" stroke="#D0D0D0"/>
+  <path d="M604 376 V384 H596" stroke="#D0D0D0"/>
+
+  <text x="70" y="60" font-family="JetBrains Mono, monospace" font-size="13" fill="#555">05 / ORDERHUNTER</text>
+
+  <!-- SCRAPER -->
+  <rect x="56" y="88" width="110" height="112" rx="12" fill="white" stroke="#E5E5E5"/>
+  <rect x="56" y="88" width="110" height="26" rx="12" fill="#FCE7EE"/>
+  <rect x="56" y="101" width="110" height="13" fill="#FCE7EE"/>
+  <text x="111" y="105" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#E11D48">SCRAPER</text>
+  <line x1="91" y1="132" x2="131" y2="132" stroke="#E11D48"/>
+  <line x1="91" y1="142" x2="131" y2="142" stroke="#E11D48"/>
+  <line x1="111" y1="152" x2="111" y2="172" stroke="#E11D48" stroke-width="1.5"/>
+  <polygon points="111,176 106,168 116,168" fill="#E11D48"/>
+  <text x="111" y="192" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#888">tenders/api</text>
+
+  <!-- FILTER -->
+  <rect x="192" y="88" width="110" height="112" rx="12" fill="white" stroke="#E5E5E5"/>
+  <rect x="192" y="88" width="110" height="26" rx="12" fill="#FCE7EE"/>
+  <rect x="192" y="101" width="110" height="13" fill="#FCE7EE"/>
+  <text x="247" y="105" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#E11D48">FILTER</text>
+  <polygon points="227,128 267,128 251,150 251,170 243,170 243,150" fill="#FCE7EE" stroke="#E11D48"/>
+  <text x="247" y="192" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#888">criteria ×14</text>
+
+  <!-- RANKER -->
+  <rect x="328" y="88" width="110" height="112" rx="12" fill="white" stroke="#E5E5E5"/>
+  <rect x="328" y="88" width="110" height="26" rx="12" fill="#FCE7EE"/>
+  <rect x="328" y="101" width="110" height="13" fill="#FCE7EE"/>
+  <text x="383" y="105" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#E11D48">RANKER</text>
+  <rect x="358" y="138" width="11" height="28" rx="2" fill="#E11D48"/>
+  <rect x="373" y="146" width="11" height="20" rx="2" fill="#F43F5E"/>
+  <rect x="388" y="152" width="11" height="14" rx="2" fill="#FDA4AF"/>
+  <rect x="403" y="157" width="11" height="9" rx="2" fill="#FCE7EE" stroke="#FDA4AF"/>
+  <line x1="353" y1="166" x2="420" y2="166" stroke="#E11D48"/>
+  <text x="383" y="192" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#888">score = f(бюджет, срок)</text>
+
+  <!-- EXPERT (HITL) -->
+  <rect x="464" y="88" width="110" height="112" rx="12" fill="#E11D48"/>
+  <rect x="464" y="88" width="110" height="26" rx="12" fill="#BE123C"/>
+  <rect x="464" y="101" width="110" height="13" fill="#BE123C"/>
+  <text x="519" y="105" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#FFFFFF">EXPERT · HITL</text>
+  <circle cx="519" cy="138" r="9" stroke="#FFFFFF" stroke-width="1.5"/>
+  <path d="M503 172 C503 157 535 157 535 172" stroke="#FFFFFF" stroke-width="1.5"/>
+  <text x="519" y="192" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#FECDD3">final call</text>
+
+  <!-- потоки со счётчиками -->
+  <circle cx="179" cy="146" r="13" fill="white" stroke="#E11D48"/>
+  <text x="179" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#E11D48">1240</text>
+  <line x1="166" y1="146" x2="176" y2="146" stroke="#111" stroke-width="1.5"/>
+  <line x1="192" y1="146" x2="188" y2="146" stroke="#111" stroke-width="1.5"/>
+  <circle cx="315" cy="146" r="11" fill="white" stroke="#E11D48"/>
+  <text x="315" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#E11D48">12</text>
+  <line x1="302" y1="146" x2="312" y2="146" stroke="#111" stroke-width="1.5"/>
+  <line x1="328" y1="146" x2="324" y2="146" stroke="#111" stroke-width="1.5"/>
+  <circle cx="451" cy="146" r="10" fill="white" stroke="#E11D48"/>
+  <text x="451" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#E11D48">3</text>
+  <line x1="438" y1="146" x2="448" y2="146" stroke="#111" stroke-width="1.5"/>
+  <line x1="464" y1="146" x2="460" y2="146" stroke="#111" stroke-width="1.5"/>
+
+  <!-- обратная связь -->
+  <path d="M519 200 V306 H247 V218" stroke="#E11D48" stroke-dasharray="4 4"/>
+  <polygon points="247,210 243,218 251,218" fill="#E11D48"/>
+  <text x="383" y="298" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#E11D48">обновление критериев</text>
+
+  <!-- нижняя аннотация -->
+  <line x1="56" y1="328" x2="584" y2="328" stroke="#E5E5E5"/>
+  <text x="56" y="354" font-family="JetBrains Mono, monospace" font-size="10" fill="#555">AGENTS: 4 · HITL · TG DELIVERY</text>
+  <circle cx="404" cy="350" r="4" fill="#E11D48"/>
+  <text x="414" y="354" font-family="JetBrains Mono, monospace" font-size="10" fill="#555">hit rate 22%</text>
+  <text x="584" y="354" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#555">CYCLE ≈ 6 MIN</text>
 </svg>

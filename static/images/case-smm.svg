@@ -1,12 +1,98 @@
 <svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="640" height="420" fill="#F3F3F3"/>
-  <rect x="140" y="90" width="360" height="260" rx="24" fill="white" stroke="#E5E5E5" stroke-width="1"/>
-  <rect x="180" y="140" width="280" height="120" rx="12" fill="#F9F9F9" stroke="#E5E5E5" stroke-width="1"/>
-  <rect x="200" y="160" width="160" height="10" rx="5" fill="#111"/>
-  <rect x="200" y="182" width="200" height="8" rx="4" fill="#888"/>
-  <rect x="200" y="202" width="140" height="8" rx="4" fill="#888"/>
-  <rect x="200" y="230" width="80" height="10" rx="5" fill="#111"/>
-  <rect x="300" y="230" width="80" height="10" rx="5" fill="#D0D0D0"/>
-  <rect x="400" y="230" width="40" height="10" rx="5" fill="#D0D0D0"/>
-  <text x="140" y="66" font-family="JetBrains Mono, monospace" font-size="13" fill="#888">03 / SMM ASSISTANT</text>
+
+  <!-- метки регистрации -->
+  <path d="M36 44 V36 H44" stroke="#D0D0D0"/>
+  <path d="M604 44 V36 H596" stroke="#D0D0D0"/>
+  <path d="M36 376 V384 H44" stroke="#D0D0D0"/>
+  <path d="M604 376 V384 H596" stroke="#D0D0D0"/>
+
+  <text x="70" y="60" font-family="JetBrains Mono, monospace" font-size="13" fill="#555">03 / SMM ASSISTANT</text>
+
+  <!-- направляющие -->
+  <line x1="50" y1="104" x2="590" y2="104" stroke="#E5E5E5" stroke-dasharray="2 6"/>
+  <line x1="50" y1="288" x2="590" y2="288" stroke="#E5E5E5" stroke-dasharray="2 6"/>
+
+  <!-- пост 1 -->
+  <rect x="56" y="92" width="160" height="196" rx="14" fill="white" stroke="#E5E5E5"/>
+  <text x="196" y="106" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#D0D0D0">P-01</text>
+  <circle cx="78" cy="124" r="11" fill="#EA580C"/>
+  <rect x="98" y="117" width="70" height="8" rx="4" fill="#555"/>
+  <rect x="98" y="132" width="44" height="6" rx="3" fill="#D0D0D0"/>
+  <rect x="72" y="150" width="128" height="72" rx="10" fill="#FDF3E7" stroke="#F3D9BC"/>
+  <line x1="72" y1="150" x2="200" y2="222" stroke="#F3D9BC"/>
+  <line x1="200" y1="150" x2="72" y2="222" stroke="#F3D9BC"/>
+  <rect x="72" y="234" width="56" height="18" rx="9" fill="#EA580C"/>
+  <text x="80" y="247" font-family="JetBrains Mono, monospace" font-size="9" fill="#FFFFFF">#запуск</text>
+  <rect x="134" y="234" width="36" height="18" rx="9" fill="#FDEAD7"/>
+  <text x="142" y="247" font-family="JetBrains Mono, monospace" font-size="9" fill="#EA580C">#ai</text>
+  <rect x="72" y="260" width="60" height="6" rx="3" fill="#D0D0D0"/>
+  <rect x="140" y="258" width="10" height="10" rx="2" fill="#EA580C"/>
+  <rect x="154" y="262" width="10" height="6" rx="2" fill="#F59E0B"/>
+  <rect x="168" y="256" width="10" height="12" rx="2" fill="#F3D9BC"/>
+  <text x="188" y="266" font-family="JetBrains Mono, monospace" font-size="8" fill="#888">ER 4.2%</text>
+
+  <!-- пост 2 -->
+  <rect x="240" y="92" width="160" height="196" rx="14" fill="white" stroke="#E5E5E5"/>
+  <text x="380" y="106" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#D0D0D0">P-02</text>
+  <circle cx="262" cy="124" r="11" fill="#F59E0B"/>
+  <rect x="282" y="117" width="70" height="8" rx="4" fill="#555"/>
+  <rect x="282" y="132" width="44" height="6" rx="3" fill="#D0D0D0"/>
+  <rect x="256" y="150" width="128" height="72" rx="10" fill="#FDF3E7" stroke="#F3D9BC"/>
+  <line x1="256" y1="150" x2="384" y2="222" stroke="#F3D9BC"/>
+  <line x1="384" y1="150" x2="256" y2="222" stroke="#F3D9BC"/>
+  <rect x="256" y="234" width="52" height="18" rx="9" fill="#EA580C"/>
+  <text x="264" y="247" font-family="JetBrains Mono, monospace" font-size="9" fill="#FFFFFF">#бренд</text>
+  <rect x="314" y="234" width="36" height="18" rx="9" fill="#FDEAD7"/>
+  <text x="322" y="247" font-family="JetBrains Mono, monospace" font-size="9" fill="#EA580C">#smm</text>
+  <rect x="256" y="260" width="60" height="6" rx="3" fill="#D0D0D0"/>
+  <rect x="324" y="256" width="10" height="12" rx="2" fill="#EA580C"/>
+  <rect x="338" y="262" width="10" height="6" rx="2" fill="#F59E0B"/>
+  <rect x="352" y="259" width="10" height="9" rx="2" fill="#F3D9BC"/>
+  <text x="372" y="266" font-family="JetBrains Mono, monospace" font-size="8" fill="#888">ER 3.8%</text>
+
+  <!-- пост 3 -->
+  <rect x="424" y="92" width="160" height="196" rx="14" fill="white" stroke="#E5E5E5"/>
+  <text x="564" y="106" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#D0D0D0">P-03</text>
+  <circle cx="446" cy="124" r="11" fill="#111"/>
+  <rect x="466" y="117" width="70" height="8" rx="4" fill="#555"/>
+  <rect x="466" y="132" width="44" height="6" rx="3" fill="#D0D0D0"/>
+  <rect x="440" y="150" width="128" height="72" rx="10" fill="#FDF3E7" stroke="#F3D9BC"/>
+  <line x1="440" y1="150" x2="568" y2="222" stroke="#F3D9BC"/>
+  <line x1="568" y1="150" x2="440" y2="222" stroke="#F3D9BC"/>
+  <rect x="440" y="234" width="48" height="18" rx="9" fill="#EA580C"/>
+  <text x="448" y="247" font-family="JetBrains Mono, monospace" font-size="9" fill="#FFFFFF">#b2b</text>
+  <rect x="494" y="234" width="44" height="18" rx="9" fill="#FDEAD7"/>
+  <text x="502" y="247" font-family="JetBrains Mono, monospace" font-size="9" fill="#EA580C">#post</text>
+  <rect x="440" y="260" width="60" height="6" rx="3" fill="#D0D0D0"/>
+  <rect x="508" y="258" width="10" height="10" rx="2" fill="#F59E0B"/>
+  <rect x="522" y="254" width="10" height="14" rx="2" fill="#EA580C"/>
+  <rect x="536" y="261" width="10" height="7" rx="2" fill="#F3D9BC"/>
+  <text x="556" y="266" font-family="JetBrains Mono, monospace" font-size="8" fill="#888">ER 5.1%</text>
+
+  <!-- выноска -->
+  <line x1="504" y1="92" x2="504" y2="74" stroke="#888" stroke-dasharray="3 3"/>
+  <text x="512" y="72" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">A/B VARIANTS ×3</text>
+
+  <!-- шкала тона бренда -->
+  <line x1="90" y1="340" x2="550" y2="340" stroke="#111"/>
+  <line x1="90" y1="336" x2="90" y2="344" stroke="#888"/>
+  <line x1="147.5" y1="336" x2="147.5" y2="344" stroke="#888"/>
+  <line x1="205" y1="336" x2="205" y2="344" stroke="#888"/>
+  <line x1="262.5" y1="336" x2="262.5" y2="344" stroke="#888"/>
+  <line x1="320" y1="336" x2="320" y2="344" stroke="#888"/>
+  <line x1="377.5" y1="336" x2="377.5" y2="344" stroke="#888"/>
+  <line x1="435" y1="336" x2="435" y2="344" stroke="#888"/>
+  <line x1="492.5" y1="336" x2="492.5" y2="344" stroke="#888"/>
+  <line x1="550" y1="336" x2="550" y2="344" stroke="#888"/>
+  <text x="90" y="358" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">-1</text>
+  <text x="205" y="358" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">-0.5</text>
+  <text x="320" y="358" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">0</text>
+  <text x="435" y="358" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">+0.5</text>
+  <text x="550" y="358" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">+1</text>
+  <line x1="233" y1="306" x2="233" y2="334" stroke="#EA580C" stroke-dasharray="3 3"/>
+  <circle cx="233" cy="340" r="5" fill="#EA580C"/>
+  <text x="233" y="298" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#EA580C">tone +0.6</text>
+
+  <text x="584" y="386" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">hashtags: auto · ideas: 12/post · ER +38%</text>
 </svg>

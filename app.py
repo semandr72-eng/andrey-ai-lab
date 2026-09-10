@@ -12,7 +12,9 @@ import logging
 import os
 from datetime import datetime
 
-from flask import Flask, render_template, request, redirect, url_for, flash, abort, Response
+import numpy as np
+from dotenv import load_dotenv
+from flask import Flask, render_template, request, redirect, url_for, flash, abort, Response, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import (
     LoginManager, UserMixin,
@@ -20,10 +22,12 @@ from flask_login import (
 )
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
+from openai import OpenAI
 from wtforms import StringField, TextAreaField, SubmitField, SelectField, PasswordField, BooleanField
 from wtforms.validators import DataRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from backend.rag_index import load_index, search_similar
 from config import Config
 
 # ---------------------------------------------------------------------------
@@ -340,6 +344,37 @@ def create_admin_user():
 
 
 # ---------------------------------------------------------------------------
+# Чат-ассистент с RAG (OpenAI + FAISS)
+# ---------------------------------------------------------------------------
+load_dotenv()
+
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+openai_client = OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
+if not openai_client:
+    app.logger.warning('OPENAI_API_KEY не задан — чат-ассистент будет недоступен')
+
+INDEX_PATH = os.path.join(Config.BASE_DIR, 'data', 'faiss_index.bin')
+META_PATH = os.path.join(Config.BASE_DIR, 'data', 'faqs_metadata.npy')
+
+try:
+    # Индекс загружается один раз при старте приложения
+    faiss_index, faq_metadata = load_index(INDEX_PATH, META_PATH)
+    app.logger.info('RAG-индекс загружен: %s фрагментов', len(faq_metadata))
+except RuntimeError as e:
+    faiss_index, faq_metadata = None, None
+    app.logger.warning('Не удалось загрузить RAG-индекс: %s', e)
+
+
+def embed_query(text: str) -> np.ndarray:
+    """Превращает текст в вектор через OpenAI text-embedding-3-small."""
+    response = openai_client.embeddings.create(
+        model='text-embedding-3-small',
+        input=[text],
+    )
+    return np.array([response.data[0].embedding], dtype='float32')
+
+
+# ---------------------------------------------------------------------------
 # Публичные маршруты
 # ---------------------------------------------------------------------------
 @app.route('/')
@@ -404,6 +439,51 @@ def contact():
         return redirect(url_for('contact'))
 
     return render_template('contact.html', form=form)
+
+
+@app.route('/chat', methods=['POST'])
+@csrf.exempt
+def chat():
+    """Чат-ассистент с RAG: эмбеддинг вопроса -> поиск в FAISS -> ответ gpt-4.1-mini."""
+    if not openai_client or faiss_index is None:
+        return jsonify({'error': 'Чат-ассистент временно недоступен'}), 503
+
+    data = request.get_json(silent=True) or {}
+    message = (data.get('message') or '').strip()
+    if not message:
+        return jsonify({'error': 'Пустое сообщение'}), 400
+
+    try:
+        query_vec = embed_query(message)
+        similar_items = search_similar(faiss_index, faq_metadata, query_vec, k=3)
+
+        context_text = '\n\n'.join(
+            f"Q: {item['question']}\nA: {item['answer']}" for item in similar_items
+        )
+
+        system_prompt = (
+            'Ты ассистент Андрей AI Lab — сайта Андрея, который создаёт ИИ-ассистентов '
+            'и чат-ботов для бизнеса. Отвечай кратко и по делу на русском языке, '
+            'только на основе предоставленного контекста. '
+            'Если информации нет в контексте — честно скажи об этом '
+            'и предложи написать в Telegram @a7onoff72.'
+        )
+
+        completion = openai_client.chat.completions.create(
+            model='gpt-4.1-mini',
+            messages=[
+                {'role': 'system', 'content': system_prompt},
+                {'role': 'user', 'content': f'Вопрос посетителя: {message}\n\nКонтекст:\n{context_text}'},
+            ],
+            temperature=0.2,
+        )
+        answer = completion.choices[0].message.content.strip()
+    except Exception as e:
+        app.logger.error('Ошибка чат-ассистента: %s', e)
+        return jsonify({'error': 'Не удалось получить ответ. Попробуйте позже или напишите в Telegram @a7onoff72'}), 503
+
+    app.logger.info('Чат-ассистент: вопрос — %.100s', message)
+    return jsonify({'answer': answer})
 
 
 # ---------------------------------------------------------------------------
