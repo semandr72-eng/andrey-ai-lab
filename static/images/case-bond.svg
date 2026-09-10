@@ -1,12 +1,117 @@
 <svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="640" height="420" fill="#F3F3F3"/>
-  <rect x="80" y="100" width="480" height="240" rx="24" fill="white" stroke="#E5E5E5" stroke-width="1"/>
-  <path d="M120 300 L200 240 L280 260 L360 180 L440 200 L520 120" stroke="#111" stroke-width="2" fill="none" stroke-linejoin="round"/>
-  <circle cx="200" cy="240" r="6" fill="#111"/>
-  <circle cx="280" cy="260" r="6" fill="#111"/>
-  <circle cx="360" cy="180" r="6" fill="#111"/>
-  <circle cx="440" cy="200" r="6" fill="#111"/>
-  <rect x="120" y="140" width="120" height="10" rx="5" fill="#111"/>
-  <rect x="120" y="162" width="200" height="8" rx="4" fill="#888"/>
-  <text x="80" y="76" font-family="JetBrains Mono, monospace" font-size="13" fill="#888">04 / BONDAI</text>
+
+  <!-- метки регистрации -->
+  <path d="M36 44 V36 H44" stroke="#D0D0D0"/>
+  <path d="M604 44 V36 H596" stroke="#D0D0D0"/>
+  <path d="M36 376 V384 H44" stroke="#D0D0D0"/>
+  <path d="M604 376 V384 H596" stroke="#D0D0D0"/>
+
+  <text x="70" y="60" font-family="JetBrains Mono, monospace" font-size="13" fill="#555">04 / BONDAI</text>
+
+  <!-- фильтры -->
+  <rect x="392" y="96" width="88" height="20" rx="10" fill="#E2F3E8"/>
+  <text x="404" y="110" font-family="JetBrains Mono, monospace" font-size="9" fill="#15803D">рейтинг ≥ A</text>
+  <rect x="488" y="96" width="96" height="20" rx="10" fill="#E2F3E8"/>
+  <text x="500" y="110" font-family="JetBrains Mono, monospace" font-size="9" fill="#15803D">срок ≤ 5 лет</text>
+
+  <!-- поле графика -->
+  <rect x="56" y="84" width="528" height="292" rx="14" fill="white" stroke="#E5E5E5"/>
+
+  <!-- сетка -->
+  <line x1="116" y1="116" x2="116" y2="312" stroke="#F0F0F0"/>
+  <line x1="184" y1="116" x2="184" y2="312" stroke="#F0F0F0"/>
+  <line x1="253" y1="116" x2="253" y2="312" stroke="#F0F0F0"/>
+  <line x1="321" y1="116" x2="321" y2="312" stroke="#F0F0F0"/>
+  <line x1="390" y1="116" x2="390" y2="312" stroke="#F0F0F0"/>
+  <line x1="458" y1="116" x2="458" y2="312" stroke="#F0F0F0"/>
+  <line x1="526" y1="116" x2="526" y2="312" stroke="#F0F0F0"/>
+  <line x1="116" y1="116" x2="526" y2="116" stroke="#F0F0F0"/>
+  <line x1="116" y1="155" x2="526" y2="155" stroke="#F0F0F0"/>
+  <line x1="116" y1="194" x2="526" y2="194" stroke="#F0F0F0"/>
+  <line x1="116" y1="233" x2="526" y2="233" stroke="#F0F0F0"/>
+  <line x1="116" y1="273" x2="526" y2="273" stroke="#F0F0F0"/>
+
+  <!-- заливка под кривой -->
+  <path d="M155 292 C250 262 320 215 395 158 C435 152 490 146 512 152 L512 312 L155 312 Z" fill="#16A34A" opacity="0.08"/>
+
+  <!-- оси -->
+  <line x1="116" y1="108" x2="116" y2="312" stroke="#111"/>
+  <polygon points="116,104 112,112 120,112" fill="#111"/>
+  <line x1="116" y1="312" x2="531" y2="312" stroke="#111"/>
+  <polygon points="535,312 527,308 527,316" fill="#111"/>
+  <line x1="112" y1="273" x2="116" y2="273" stroke="#111"/>
+  <line x1="112" y1="233" x2="116" y2="233" stroke="#111"/>
+  <line x1="112" y1="194" x2="116" y2="194" stroke="#111"/>
+  <line x1="112" y1="155" x2="116" y2="155" stroke="#111"/>
+  <line x1="112" y1="116" x2="116" y2="116" stroke="#111"/>
+  <line x1="184" y1="312" x2="184" y2="316" stroke="#111"/>
+  <line x1="253" y1="312" x2="253" y2="316" stroke="#111"/>
+  <line x1="321" y1="312" x2="321" y2="316" stroke="#111"/>
+  <line x1="390" y1="312" x2="390" y2="316" stroke="#111"/>
+  <line x1="458" y1="312" x2="458" y2="316" stroke="#111"/>
+  <line x1="526" y1="312" x2="526" y2="316" stroke="#111"/>
+
+  <!-- подписи осей -->
+  <text x="104" y="315" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">0</text>
+  <text x="104" y="276" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">2</text>
+  <text x="104" y="236" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">4</text>
+  <text x="104" y="197" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">6</text>
+  <text x="104" y="158" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">8</text>
+  <text x="104" y="119" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">10</text>
+  <text transform="rotate(-90 90 214)" x="90" y="214" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">ДЮРАЦИЯ, ЛЕТ</text>
+  <text x="116" y="330" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">6</text>
+  <text x="184" y="330" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">8</text>
+  <text x="253" y="330" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">10</text>
+  <text x="321" y="330" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">12</text>
+  <text x="390" y="330" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">14</text>
+  <text x="458" y="330" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">16</text>
+  <text x="526" y="330" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">18</text>
+  <text x="526" y="346" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">YTM, %</text>
+
+  <!-- кривая доходности -->
+  <path d="M155 292 C250 262 320 215 395 158 C435 152 490 146 512 152" stroke="#15803D" stroke-width="2.5"/>
+
+  <!-- облигации: вселенная MOEX -->
+  <circle cx="155" cy="284" r="4" fill="#9CA3AF"/>
+  <circle cx="178" cy="296" r="4" fill="#9CA3AF"/>
+  <circle cx="196" cy="258" r="4" fill="#9CA3AF"/>
+  <circle cx="215" cy="276" r="4" fill="#9CA3AF"/>
+  <circle cx="234" cy="230" r="4" fill="#9CA3AF"/>
+  <circle cx="252" cy="262" r="4" fill="#9CA3AF"/>
+  <circle cx="271" cy="246" r="4" fill="#9CA3AF"/>
+  <circle cx="290" cy="208" r="4" fill="#9CA3AF"/>
+  <circle cx="308" cy="252" r="4" fill="#9CA3AF"/>
+  <circle cx="327" cy="222" r="4" fill="#9CA3AF"/>
+  <circle cx="346" cy="262" r="4" fill="#9CA3AF"/>
+  <circle cx="365" cy="238" r="4" fill="#9CA3AF"/>
+  <circle cx="384" cy="196" r="4" fill="#9CA3AF"/>
+  <circle cx="414" cy="240" r="4" fill="#9CA3AF"/>
+  <circle cx="433" cy="212" r="4" fill="#9CA3AF"/>
+  <circle cx="452" cy="248" r="4" fill="#9CA3AF"/>
+  <circle cx="471" cy="188" r="4" fill="#9CA3AF"/>
+  <circle cx="490" cy="228" r="4" fill="#9CA3AF"/>
+  <circle cx="508" cy="196" r="4" fill="#9CA3AF"/>
+
+  <!-- подборка -->
+  <circle cx="234" cy="230" r="4" fill="#15803D"/>
+  <circle cx="290" cy="208" r="4" fill="#15803D"/>
+  <circle cx="327" cy="222" r="4" fill="#15803D"/>
+  <circle cx="395" cy="158" r="5" fill="#111"/>
+  <circle cx="395" cy="158" r="8.5" stroke="#111"/>
+  <circle cx="290" cy="208" r="7.5" stroke="#15803D"/>
+
+  <!-- выноски -->
+  <line x1="389" y1="152" x2="330" y2="132" stroke="#15803D" stroke-dasharray="3 3"/>
+  <text x="180" y="130" font-family="JetBrains Mono, monospace" font-size="9" fill="#15803D">SU26238 · YTM 12.4%</text>
+  <line x1="296" y1="202" x2="240" y2="148" stroke="#15803D" stroke-dasharray="3 3"/>
+  <text x="178" y="146" font-family="JetBrains Mono, monospace" font-size="9" fill="#15803D">A+ · 7.9Y</text>
+
+  <!-- легенда -->
+  <circle cx="392" cy="352" r="4" fill="#15803D"/>
+  <text x="402" y="356" font-family="JetBrains Mono, monospace" font-size="9" fill="#555">подборка</text>
+  <circle cx="466" cy="352" r="4" fill="#9CA3AF"/>
+  <text x="476" y="356" font-family="JetBrains Mono, monospace" font-size="9" fill="#555">MOEX universe</text>
+
+  <text x="70" y="394" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">MOEX · OFZ + CORP · 2 400+ бумаг</text>
 </svg>

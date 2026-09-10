@@ -176,6 +176,305 @@
         </div>
     </footer>
 
+    <!-- Чат-виджет ИИ-ассистента -->
+    <style>
+        .chat-widget {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 1000;
+            font-family: var(--font-base);
+            --chat-accent: #2563EB;
+            --chat-accent-hover: #1D4ED8;
+            --chat-accent-soft: #EFF4FF;
+        }
+
+        .chat-widget__toggle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            background: var(--chat-accent);
+            box-shadow: var(--shadow-card-hover);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .chat-widget__toggle:hover {
+            background: var(--chat-accent-hover);
+        }
+
+        .chat-widget__icon {
+            width: 24px;
+            height: 24px;
+            stroke: #FFFFFF;
+            transition: var(--transition);
+        }
+
+        .chat-widget__panel {
+            position: absolute;
+            right: 0;
+            bottom: 72px;
+            width: 340px;
+            max-width: calc(100vw - 48px);
+            height: 460px;
+            max-height: calc(100vh - 120px);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-card-hover);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-widget__panel[hidden] {
+            display: none;
+        }
+
+        .chat-widget__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: var(--chat-accent-soft);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .chat-widget__title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .chat-widget__title::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--chat-accent);
+            flex-shrink: 0;
+        }
+
+        .chat-widget__close {
+            border: none;
+            background: none;
+            font-size: 22px;
+            line-height: 1;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            padding: 0 2px;
+        }
+
+        .chat-widget__close:hover {
+            color: var(--chat-accent);
+        }
+
+        .chat-widget__messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--color-bg);
+        }
+
+        .chat-widget__message {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: var(--radius-input);
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .chat-widget__message--bot {
+            align-self: flex-start;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+        }
+
+        .chat-widget__message--user {
+            align-self: flex-end;
+            background: var(--chat-accent);
+            color: #FFFFFF;
+        }
+
+        .chat-widget__message--error {
+            align-self: flex-start;
+            background: var(--color-surface);
+            border: 1px solid var(--color-error);
+            color: var(--color-error);
+        }
+
+        .chat-widget__form {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .chat-widget__input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-pill);
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--color-text);
+            outline: none;
+        }
+
+        .chat-widget__input:focus {
+            border-color: var(--chat-accent);
+        }
+
+        .chat-widget__send {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            border: none;
+            border-radius: 50%;
+            background: var(--chat-accent);
+            color: #FFFFFF;
+            font-size: 18px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-widget__send:hover {
+            background: var(--chat-accent-hover);
+        }
+
+        .chat-widget__send:disabled,
+        .chat-widget__input:disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+
+        @media (max-width: 480px) {
+            .chat-widget {
+                right: 16px;
+                bottom: 16px;
+            }
+
+            .chat-widget__panel {
+                width: calc(100vw - 32px);
+                height: 70vh;
+            }
+        }
+    </style>
+
+    <div class="chat-widget">
+        <div class="chat-widget__panel" id="chat-panel" hidden>
+            <div class="chat-widget__header">
+                <span class="chat-widget__title">ИИ-ассистент</span>
+                <button type="button" class="chat-widget__close" id="chat-close" aria-label="Закрыть чат">&times;</button>
+            </div>
+            <div class="chat-widget__messages" id="chat-messages"></div>
+            <form class="chat-widget__form" id="chat-form">
+                <input type="text" class="chat-widget__input" id="chat-input"
+                       placeholder="Напишите вопрос..." maxlength="1000" autocomplete="off">
+                <button type="submit" class="chat-widget__send" aria-label="Отправить">&rarr;</button>
+            </form>
+        </div>
+        <button class="chat-widget__toggle" id="chat-toggle" aria-label="Открыть чат с ИИ-ассистентом" aria-expanded="false">
+            <svg class="chat-widget__icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        (function () {
+            var panel = document.getElementById('chat-panel');
+            var toggle = document.getElementById('chat-toggle');
+            var closeBtn = document.getElementById('chat-close');
+            var messages = document.getElementById('chat-messages');
+            var form = document.getElementById('chat-form');
+            var input = document.getElementById('chat-input');
+            var greeted = false;
+
+            var GREETING = 'Привет! Я ИИ-ассистент Андрея. Спросите об услугах, ценах или примерах работ!';
+
+            function addMessage(text, kind) {
+                var div = document.createElement('div');
+                div.className = 'chat-widget__message chat-widget__message--' + kind;
+                div.textContent = text;
+                messages.appendChild(div);
+                messages.scrollTop = messages.scrollHeight;
+                return div;
+            }
+
+            function setFormDisabled(disabled) {
+                input.disabled = disabled;
+                form.querySelector('.chat-widget__send').disabled = disabled;
+            }
+
+            toggle.addEventListener('click', function () {
+                panel.hidden = !panel.hidden;
+                toggle.setAttribute('aria-expanded', String(!panel.hidden));
+                if (!panel.hidden) {
+                    if (!greeted) {
+                        addMessage(GREETING, 'bot');
+                        greeted = true;
+                    }
+                    input.focus();
+                }
+            });
+
+            closeBtn.addEventListener('click', function () {
+                panel.hidden = true;
+                toggle.setAttribute('aria-expanded', 'false');
+            });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var text = input.value.trim();
+                if (!text) return;
+
+                addMessage(text, 'user');
+                input.value = '';
+                setFormDisabled(true);
+                var pending = addMessage('Печатает...', 'bot');
+
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                })
+                    .then(function (res) {
+                        return res.json().then(function (data) {
+                            if (!res.ok) throw new Error(data.error || 'Ошибка сервера');
+                            return data.answer;
+                        });
+                    })
+                    .then(function (answer) {
+                        pending.textContent = answer;
+                    })
+                    .catch(function (err) {
+                        pending.className = 'chat-widget__message chat-widget__message--error';
+                        pending.textContent = err.message || 'Не удалось получить ответ. Попробуйте позже.';
+                    })
+                    .finally(function () {
+                        setFormDisabled(false);
+                        input.focus();
+                        messages.scrollTop = messages.scrollHeight;
+                    });
+            });
+        })();
+    </script>
+
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </body>
 </html>
