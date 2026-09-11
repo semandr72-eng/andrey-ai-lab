@@ -1,0 +1,80 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#F3F3F3"/>
+
+  <!-- метки регистрации -->
+  <path d="M36 44 V36 H44" stroke="#D0D0D0"/>
+  <path d="M604 44 V36 H596" stroke="#D0D0D0"/>
+  <path d="M36 376 V384 H44" stroke="#D0D0D0"/>
+  <path d="M604 376 V384 H596" stroke="#D0D0D0"/>
+
+  <text x="70" y="60" font-family="JetBrains Mono, monospace" font-size="13" fill="#555">07 / AI CURATOR</text>
+
+  <!-- чат со студентом -->
+  <rect x="56" y="92" width="260" height="196" rx="14" fill="white" stroke="#E5E5E5"/>
+  <rect x="56" y="92" width="260" height="26" rx="14" fill="#FEF3E2"/>
+  <rect x="56" y="105" width="260" height="13" fill="#FEF3E2"/>
+  <text x="72" y="109" font-family="JetBrains Mono, monospace" font-size="9" fill="#D97706">STUDENT CHAT</text>
+  <circle cx="298" cy="105" r="4" fill="#D97706"/>
+
+  <!-- вопрос студента -->
+  <rect x="150" y="132" width="150" height="30" rx="10" fill="#F3F3F3" stroke="#E5E5E5"/>
+  <text x="225" y="151" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#555">когда дедлайн по модулю 4?</text>
+  <circle cx="314" cy="147" r="10" fill="#D0D0D0"/>
+
+  <!-- ответ куратора -->
+  <circle cx="72" cy="187" r="10" fill="#D97706"/>
+  <text x="72" y="190" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#FFFFFF">AI</text>
+  <rect x="88" y="172" width="196" height="58" rx="10" fill="#FEF3E2" stroke="#F3D9A4"/>
+  <rect x="100" y="184" width="150" height="6" rx="3" fill="#D97706"/>
+  <rect x="100" y="196" width="120" height="6" rx="3" fill="#E8B36B"/>
+  <rect x="100" y="208" width="80" height="6" rx="3" fill="#F3D9A4"/>
+  <text x="240" y="222" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#D97706">level: JUNIOR</text>
+
+  <!-- уточнение уровня -->
+  <rect x="88" y="242" width="150" height="28" rx="10" fill="white" stroke="#E5E5E5"/>
+  <text x="163" y="260" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#555">а если уже знаю SQL?</text>
+  <circle cx="258" cy="256" r="10" fill="#D0D0D0"/>
+
+  <!-- карточка дедлайна из LMS -->
+  <rect x="340" y="92" width="244" height="90" rx="14" fill="white" stroke="#E5E5E5"/>
+  <text x="572" y="106" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#D0D0D0">LMS SYNC</text>
+  <rect x="356" y="112" width="52" height="52" rx="10" fill="#FEF3E2" stroke="#F3D9A4"/>
+  <rect x="356" y="112" width="52" height="16" rx="8" fill="#D97706"/>
+  <rect x="356" y="120" width="52" height="8" fill="#D97706"/>
+  <text x="382" y="124" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#FFFFFF">SEP</text>
+  <text x="382" y="154" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" fill="#D97706">20</text>
+  <rect x="424" y="116" width="120" height="8" rx="4" fill="#555"/>
+  <rect x="424" y="132" width="88" height="6" rx="3" fill="#D0D0D0"/>
+  <rect x="424" y="146" width="96" height="18" rx="9" fill="#FEF3E2" stroke="#F3D9A4"/>
+  <text x="432" y="159" font-family="JetBrains Mono, monospace" font-size="8" fill="#D97706">23:59 · модуль 4</text>
+
+  <!-- адаптация под уровень -->
+  <rect x="340" y="198" width="244" height="90" rx="14" fill="white" stroke="#E5E5E5"/>
+  <text x="356" y="218" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">ADAPTIVE ANSWER</text>
+  <rect x="356" y="230" width="64" height="20" rx="10" fill="#FEF3E2" stroke="#F3D9A4"/>
+  <text x="388" y="244" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#D97706">JUNIOR</text>
+  <rect x="430" y="230" width="64" height="20" rx="10" fill="#D97706"/>
+  <text x="462" y="244" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#FFFFFF">MIDDLE</text>
+  <rect x="504" y="230" width="64" height="20" rx="10" fill="#FEF3E2" stroke="#F3D9A4"/>
+  <text x="536" y="244" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#D97706">SENIOR</text>
+  <rect x="356" y="260" width="212" height="6" rx="3" fill="#D0D0D0"/>
+  <rect x="356" y="260" width="120" height="6" rx="3" fill="#D97706"/>
+
+  <!-- шкала уровней -->
+  <line x1="90" y1="340" x2="550" y2="340" stroke="#111"/>
+  <line x1="90" y1="336" x2="90" y2="344" stroke="#888"/>
+  <line x1="205" y1="336" x2="205" y2="344" stroke="#888"/>
+  <line x1="320" y1="336" x2="320" y2="344" stroke="#888"/>
+  <line x1="435" y1="336" x2="435" y2="344" stroke="#888"/>
+  <line x1="550" y1="336" x2="550" y2="344" stroke="#888"/>
+  <text x="90" y="358" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">NEW</text>
+  <text x="205" y="358" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">JUNIOR</text>
+  <text x="320" y="358" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">MIDDLE</text>
+  <text x="435" y="358" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">SENIOR</text>
+  <text x="550" y="358" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">PRO</text>
+  <line x1="268" y1="306" x2="268" y2="334" stroke="#D97706" stroke-dasharray="3 3"/>
+  <circle cx="268" cy="340" r="5" fill="#D97706"/>
+  <text x="268" y="298" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#D97706">студент: mid</text>
+
+  <text x="584" y="386" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#888">deadlines: LMS sync · level: auto · RAG: ChromaDB</text>
+</svg>
