@@ -6,9 +6,28 @@ on:
   workflow_dispatch:
 
 jobs:
+  # Секреты нельзя проверять напрямую в job.if — проверяем через env + outputs.
+  # Пока секреты сервера не настроены (docs/DEPLOY.md, шаг 7), деплой пропускается.
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      configured: ${{ steps.set.outputs.configured }}
+    env:
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+      DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+      DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+    steps:
+      - id: set
+        run: |
+          if [ -n "$DEPLOY_HOST" ] && [ -n "$DEPLOY_USER" ] && [ -n "$DEPLOY_SSH_KEY" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          fi
+
   deploy:
-    # Пропускаем, пока не настроены секреты сервера (см. docs/DEPLOY.md, шаг 7)
-    if: ${{ secrets.DEPLOY_HOST != '' && secrets.DEPLOY_USER != '' && secrets.DEPLOY_SSH_KEY != '' }}
+    needs: check
+    if: needs.check.outputs.configured == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
