@@ -8,18 +8,19 @@ from dotenv import load_dotenv
 
 import faiss
 import numpy as np
-from openai import OpenAI
 
+from .gigachat_client import create_client, get_embedding_model
 from .rag_index import load_index, search_similar
 
 
 load_dotenv()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-if not OPENAI_API_KEY:
-    raise RuntimeError("OPENAI_API_KEY is not set. Please set it in your environment or in a .env file.")
-
-client = OpenAI(api_key=OPENAI_API_KEY)
+client = create_client()
+if not client:
+    raise RuntimeError(
+        "GigaChat не настроен. Задайте GIGACHAT_CREDENTIALS "
+        "или GIGACHAT_CLIENT_ID/GIGACHAT_CLIENT_SECRET в .env."
+    )
 
 app = FastAPI(title="FAQ RAG Assistant")
 
@@ -49,10 +50,8 @@ faiss_index, metadata = load_index(INDEX_PATH, META_PATH)
 
 
 def embed_text(texts: List[str]) -> np.ndarray:
-    response = client.embeddings.create(
-        model="text-embedding-3-small",
-        input=texts,
-    )
+    with client as giga:
+        response = giga.embeddings(texts=texts, model=get_embedding_model())
     vectors = [d.embedding for d in response.data]
     return np.array(vectors, dtype="float32")
 
@@ -80,11 +79,13 @@ async def chat(req: ChatRequest) -> ChatResponse:
         {"role": "user", "content": f"Вопрос пользователя: {req.message}\n\nКонтекст FAQ:\n{context_text}"},
     ]
 
-    completion = client.chat.completions.create(
-        model="gpt-4.1-mini",
-        messages=messages,
-        temperature=0.2,
-    )
+    with client as giga:
+        completion = giga.chat(
+            {
+                "messages": messages,
+                "temperature": 0.2,
+            }
+        )
 
     answer = completion.choices[0].message.content
 

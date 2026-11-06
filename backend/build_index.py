@@ -4,18 +4,23 @@ from typing import List
 import faiss
 import numpy as np
 from dotenv import load_dotenv
-from openai import OpenAI
 
-from .rag_index import load_faq_data
+try:
+    from .gigachat_client import create_client, get_embedding_model
+    from .rag_index import load_faq_data
+except ImportError:  # запуск напрямую: python backend/build_index.py
+    from gigachat_client import create_client, get_embedding_model
+    from rag_index import load_faq_data
 
 
 load_dotenv()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-if not OPENAI_API_KEY:
-    raise RuntimeError("OPENAI_API_KEY is not set. Please set it in your environment or in a .env file.")
-
-client = OpenAI(api_key=OPENAI_API_KEY)
+client = create_client()
+if not client:
+    raise RuntimeError(
+        "GigaChat не настроен. Задайте GIGACHAT_CREDENTIALS "
+        "или GIGACHAT_CLIENT_ID/GIGACHAT_CLIENT_SECRET в .env."
+    )
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
@@ -25,10 +30,8 @@ META_PATH = os.path.join(DATA_DIR, "faqs_metadata.npy")
 
 
 def embed_texts(texts: List[str]) -> np.ndarray:
-    response = client.embeddings.create(
-        model="text-embedding-3-small",
-        input=texts,
-    )
+    with client as giga:
+        response = giga.embeddings(texts=texts, model=get_embedding_model())
     vectors = [d.embedding for d in response.data]
     return np.array(vectors, dtype="float32")
 

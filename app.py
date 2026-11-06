@@ -22,11 +22,12 @@ from flask_login import (
 )
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
-from openai import OpenAI
+from gigachat.models import Chat, Messages, MessagesRole
 from wtforms import StringField, TextAreaField, SubmitField, SelectField, PasswordField, BooleanField
 from wtforms.validators import DataRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from backend.gigachat_client import create_client, get_embedding_model
 from backend.rag_index import load_index, search_similar
 from config import Config
 
@@ -376,14 +377,16 @@ def create_admin_user():
 
 
 # ---------------------------------------------------------------------------
-# Чат-ассистент с RAG (OpenAI + FAISS)
+# Чат-ассистент с RAG (GigaChat + FAISS)
 # ---------------------------------------------------------------------------
 load_dotenv()
 
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
-openai_client = OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
-if not openai_client:
-    app.logger.warning('OPENAI_API_KEY не задан — чат-ассистент будет недоступен')
+gigachat_client = create_client()
+if not gigachat_client:
+    app.logger.warning(
+        'GigaChat не настроен (GIGACHAT_CREDENTIALS или GIGACHAT_CLIENT_ID/SECRET) '
+        '— чат-ассистент будет недоступен'
+    )
 
 INDEX_PATH = os.path.join(Config.BASE_DIR, 'data', 'faiss_index.bin')
 META_PATH = os.path.join(Config.BASE_DIR, 'data', 'faqs_metadata.npy')
@@ -398,11 +401,9 @@ except RuntimeError as e:
 
 
 def embed_query(text: str) -> np.ndarray:
-    """Превращает текст в вектор через OpenAI text-embedding-3-small."""
-    response = openai_client.embeddings.create(
-        model='text-embedding-3-small',
-        input=[text],
-    )
+    """Превращает текст в вектор через эмбеддинги GigaChat."""
+    with gigachat_client as giga:
+        response = giga.embeddings(texts=[text], model=get_embedding_model())
     return np.array([response.data[0].embedding], dtype='float32')
 
 
@@ -476,8 +477,8 @@ def contact():
 @app.route('/chat', methods=['POST'])
 @csrf.exempt
 def chat():
-    """Чат-ассистент с RAG: эмбеддинг вопроса -> поиск в FAISS -> ответ gpt-4.1-mini."""
-    if not openai_client or faiss_index is None:
+    """Чат-ассистент с RAG: эмбеддинг вопроса -> поиск в FAISS -> ответ GigaChat."""
+    if not gigachat_client or faiss_index is None:
         return jsonify({'error': 'Чат-ассистент временно недоступен'}), 503
 
     data = request.get_json(silent=True) or {}
@@ -501,14 +502,18 @@ def chat():
             'и предложи написать в Telegram @a7onoff72.'
         )
 
-        completion = openai_client.chat.completions.create(
-            model='gpt-4.1-mini',
+        payload = Chat(
             messages=[
-                {'role': 'system', 'content': system_prompt},
-                {'role': 'user', 'content': f'Вопрос посетителя: {message}\n\nКонтекст:\n{context_text}'},
+                Messages(role=MessagesRole.SYSTEM, content=system_prompt),
+                Messages(
+                    role=MessagesRole.USER,
+                    content=f'Вопрос посетителя: {message}\n\nКонтекст:\n{context_text}',
+                ),
             ],
             temperature=0.2,
         )
+        with gigachat_client as giga:
+            completion = giga.chat(payload)
         answer = completion.choices[0].message.content.strip()
     except Exception as e:
         app.logger.error('Ошибка чат-ассистента: %s', e)
