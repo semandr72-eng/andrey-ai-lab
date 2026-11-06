@@ -7,6 +7,8 @@ on:
 
 jobs:
   deploy:
+    # Пропускаем, пока не настроены секреты сервера (см. docs/DEPLOY.md, шаг 7)
+    if: ${{ secrets.DEPLOY_HOST != '' && secrets.DEPLOY_USER != '' && secrets.DEPLOY_SSH_KEY != '' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
