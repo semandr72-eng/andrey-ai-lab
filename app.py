@@ -532,8 +532,9 @@ def chat():
         return jsonify({'error': 'Не удалось получить ответ. Попробуйте позже или напишите в Telegram @a7onoff72'}), 503
 
     app.logger.info('Чат-ассистент: вопрос — %.100s', message)
+    client_ip = request.headers.get('X-Real-IP') or request.remote_addr
     try:
-        db.session.add(ChatLog(question=message, answer=answer, ip=request.remote_addr))
+        db.session.add(ChatLog(question=message, answer=answer, ip=client_ip))
         db.session.commit()
     except Exception as e:
         app.logger.error('Не удалось сохранить диалог чата: %s', e)
