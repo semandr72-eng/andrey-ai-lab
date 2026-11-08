@@ -4,6 +4,10 @@
 """
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class Config:
     # Flask. В production задавайте SECRET_KEY переменной окружения;

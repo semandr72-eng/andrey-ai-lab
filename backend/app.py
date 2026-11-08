@@ -7,9 +7,9 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 
 import faiss
-import numpy as np
 
-from .gigachat_client import create_client, get_embedding_model
+from .gigachat_client import create_client
+from .embeddings import embed_texts
 from .rag_index import load_index, search_similar
 
 
@@ -49,19 +49,12 @@ META_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "faqs_metadata
 faiss_index, metadata = load_index(INDEX_PATH, META_PATH)
 
 
-def embed_text(texts: List[str]) -> np.ndarray:
-    with client as giga:
-        response = giga.embeddings(texts=texts, model=get_embedding_model())
-    vectors = [d.embedding for d in response.data]
-    return np.array(vectors, dtype="float32")
-
-
 @app.post("/chat", response_model=ChatResponse)
 async def chat(req: ChatRequest) -> ChatResponse:
     if not req.message.strip():
         raise HTTPException(status_code=400, detail="Message is empty")
 
-    query_vec = embed_text([req.message])
+    query_vec = embed_texts([req.message])
     similar_items = search_similar(faiss_index, metadata, query_vec, k=req.top_k)
 
     context_text = "\n\n".join(
@@ -79,13 +72,12 @@ async def chat(req: ChatRequest) -> ChatResponse:
         {"role": "user", "content": f"Вопрос пользователя: {req.message}\n\nКонтекст FAQ:\n{context_text}"},
     ]
 
-    with client as giga:
-        completion = giga.chat(
-            {
-                "messages": messages,
-                "temperature": 0.2,
-            }
-        )
+    completion = client.chat(
+        {
+            "messages": messages,
+            "temperature": 0.2,
+        }
+    )
 
     answer = completion.choices[0].message.content
 

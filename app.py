@@ -27,7 +27,8 @@ from wtforms import StringField, TextAreaField, SubmitField, SelectField, Passwo
 from wtforms.validators import DataRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from backend.gigachat_client import create_client, get_embedding_model
+from backend.gigachat_client import create_client
+from backend.embeddings import embed_texts
 from backend.rag_index import load_index, search_similar
 from config import Config
 
@@ -364,7 +365,7 @@ def get_case_by_slug(slug: str):
 
 
 def create_admin_user():
-    """Создаёт администратора при первом запуске, если его ещё нет в БД."""
+    """Создаёт администратора при первом запуске или обновляет его пароль из env."""
     admin = User.query.filter_by(username=Config.ADMIN_USERNAME).first()
     if not admin:
         admin = User(
@@ -374,6 +375,10 @@ def create_admin_user():
         db.session.add(admin)
         db.session.commit()
         app.logger.info('Создан администратор: %s', Config.ADMIN_USERNAME)
+    elif not check_password_hash(admin.password_hash, Config.ADMIN_PASSWORD):
+        admin.password_hash = generate_password_hash(Config.ADMIN_PASSWORD)
+        db.session.commit()
+        app.logger.info('Пароль администратора обновлён из переменной окружения')
 
 
 # ---------------------------------------------------------------------------
@@ -401,10 +406,8 @@ except RuntimeError as e:
 
 
 def embed_query(text: str) -> np.ndarray:
-    """Превращает текст в вектор через эмбеддинги GigaChat."""
-    with gigachat_client as giga:
-        response = giga.embeddings(texts=[text], model=get_embedding_model())
-    return np.array([response.data[0].embedding], dtype='float32')
+    """Превращает текст в вектор через локальные эмбеддинги."""
+    return embed_texts([text])
 
 
 # ---------------------------------------------------------------------------
@@ -512,8 +515,7 @@ def chat():
             ],
             temperature=0.2,
         )
-        with gigachat_client as giga:
-            completion = giga.chat(payload)
+        completion = gigachat_client.chat(payload)
         answer = completion.choices[0].message.content.strip()
     except Exception as e:
         app.logger.error('Ошибка чат-ассистента: %s', e)

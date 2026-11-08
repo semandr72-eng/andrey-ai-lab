@@ -6,6 +6,7 @@ WTForms==3.1.2
 email-validator==2.2.0
 Werkzeug==3.0.3
 faiss-cpu
+fastembed
 gigachat
 numpy
 python-dotenv

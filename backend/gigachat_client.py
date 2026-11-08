@@ -1,10 +1,13 @@
-"""Клиент GigaChat для чат-ассистента и эмбеддингов.
+"""Клиент GigaChat для чат-ассистента (генерация ответов).
 
 Авторизация — через переменные окружения (см. .env.example):
 - GIGACHAT_CREDENTIALS — Authorization key (base64) из личного кабинета developers.sber.ru, либо
 - GIGACHAT_CLIENT_ID + GIGACHAT_CLIENT_SECRET — пара, из которой ключ собирается сам.
 Опционально: GIGACHAT_SCOPE (по умолчанию GIGACHAT_API_PERS),
-GIGACHAT_MODEL (по умолчанию GigaChat), GIGACHAT_EMBEDDING_MODEL (по умолчанию Embeddings).
+GIGACHAT_MODEL (по умолчанию GigaChat-2).
+
+Эмбеддинги не отсюда: поиск по индексу — локальная модель fastembed
+(см. backend/embeddings.py), данные не покидают сервер.
 """
 import base64
 import os
@@ -13,8 +16,7 @@ from typing import Optional
 from gigachat import GigaChat
 
 DEFAULT_SCOPE = 'GIGACHAT_API_PERS'
-DEFAULT_CHAT_MODEL = 'GigaChat'
-DEFAULT_EMBEDDING_MODEL = 'Embeddings'
+DEFAULT_CHAT_MODEL = 'GigaChat-2'
 
 
 def get_credentials() -> Optional[str]:
@@ -33,10 +35,6 @@ def get_credentials() -> Optional[str]:
 
 def get_chat_model() -> str:
     return os.getenv('GIGACHAT_MODEL', DEFAULT_CHAT_MODEL)
-
-
-def get_embedding_model() -> str:
-    return os.getenv('GIGACHAT_EMBEDDING_MODEL', DEFAULT_EMBEDDING_MODEL)
 
 
 def create_client() -> Optional[GigaChat]:
