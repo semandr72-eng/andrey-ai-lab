@@ -21,7 +21,9 @@ set +a
 # Проверяем, что конфигурация в порядке (ADMIN_PASSWORD задан и т.п.)
 .venv/bin/python -c "from config import Config; print('config OK')"
 
-# База SQLite: создать/мигрировать при необходимости (idempotent)
+# База SQLite: создать/мигрировать при необходимости (idempotent).
+# Папку instance создаём сами — sqlite файл не создаст её автоматически.
+mkdir -p instance
 .venv/bin/python - <<'PY'
 from app import app, db, create_admin_user
 with app.app_context():
