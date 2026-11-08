@@ -37,7 +37,8 @@ chown -R deploy:deploy /home/deploy/.ssh
 chmod 700 /home/deploy/.ssh && chmod 600 /home/deploy/.ssh/authorized_keys
 
 # Деплойному пользователю — право перезапускать сервис без пароля
-echo 'deploy ALL=(ALL) NOPASSWD: /bin/systemctl restart andrey-ai-lab, /bin/systemctl is-active andrey-ai-lab' > /etc/sudoers.d/deploy
+# (systemctl в Ubuntu 24.04 живёт в /usr/bin; маска ограничивает команды этим сервисом)
+echo 'deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl * andrey-ai-lab*' > /etc/sudoers.d/deploy
 ```
 
 ## 3. Код и окружение приложения
