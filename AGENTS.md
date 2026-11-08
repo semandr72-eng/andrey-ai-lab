@@ -232,6 +232,24 @@ DNS `semenov-ai.ru` + `www` смотрят на новый IP. **Авто-деп
    в переписке → удалить в developers.sber.ru, создать новый, обновить
    `GIGACHAT_CREDENTIALS` в `.env` на сервере, перезапустить сервис.
 
+### Деплой на РФ-сервер: грабли и решения (08.11, вечер)
+
+- **gunicorn не исполняет `if __name__ == '__main__'`** — на чистом сервере
+  база SQLite не создавалась, `/admin/` и форма падали с 500 «unable to open
+  database file». `scripts/deploy.sh` теперь сам делает `mkdir -p instance`
+  и прогоняет `db.create_all()` + `create_admin_user()` (idempotent).
+- **sudoers**: `systemctl` в Ubuntu 24.04 — `/usr/bin/systemctl` (не `/bin`),
+  плюс флаги типа `--quiet` ломали точное совпадение. Рабочая строка:
+  `deploy ALL=(ALL) NOPASSWD: /usr/bin/systemctl * andrey-ai-lab*`.
+- **rsync не входит в минимальный Ubuntu** — `apt install rsync` иначе
+  workflow падает с exit code 12.
+- **DEPLOY_SSH_KEY храним в base64 одной строкой** (в workflow делается
+  `base64 -d`) — многострочный ключ при копировании в секрет GitHub
+  терял символы («error in libcrypto»).
+- **DNS Timeweb**: записи удаляются/создаются заново (редактирования нет),
+  NS-серверы (ns2/ns4) синхронизируются с задержкой — Let's Encrypt и
+  GitHub Pages DNS-check могут падать, просто повторять спустя время.
+
 ### Сессия 07.11.2026 — план (закрыт)
 
 ### Выполнено в сессии 08.11.2026 (пункты 1–3)
