@@ -220,12 +220,10 @@ DNS `semenov-ai.ru` + `www` смотрят на новый IP. **Авто-деп
 
 ### Осталось сделать (порядок важен)
 
-1. **Блог → GitHub Pages** (делается первым!): в DNS Timeweb удалить
-   A-запись `blog.semenov-ai.ru` (→ 201.51.27.146, старый сервер), добавить
-   CNAME `blog.semenov-ai.ru` → `semandr72-eng.github.io`; в репозитории
-   блога `andrey-ai-lab-` → Settings → Pages → Custom domain:
-   `blog.semenov-ai.ru`. Пользователь делает, потом проверить
-   `https://blog.semenov-ai.ru`.
+1. **~~Блог → GitHub Pages~~ ✅ (08.11, вечер)** — CNAME
+   `blog.semenov-ai.ru` → `semandr72-eng.github.io`, custom domain в настройках
+   репозитория `andrey-ai-lab-`, HTTPS отдаёт 200. При желании включить
+   галочку «Enforce HTTPS» в Settings → Pages репозитория блога.
 2. **Выключить старый сервер «RAG Bot»** (Амстердам, Timeweb Cloud,
    IP 201.51.27.146) — только после п.1. Сначала выключить (не удалять),
    через неделю убедиться и удалить. ⚠️ Перед удалением скачать с него
