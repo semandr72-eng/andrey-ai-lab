@@ -37,8 +37,14 @@ jobs:
         run: |
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
           # Секрет хранится в base64 (одна строка — надёжнее копировать).
-          printf '%s' "${{ secrets.DEPLOY_SSH_KEY }}" | tr -d '[:space:]' | base64 -d > ~/.ssh/deploy_key
+          B64=$(printf '%s' "${{ secrets.DEPLOY_SSH_KEY }}" | tr -d '[:space:]')
+          echo "длина base64-строки в секрете: ${#B64} (ожидается 548)"
+          if ! printf '%s' "$B64" | base64 -d > ~/.ssh/deploy_key 2>/tmp/b64err; then
+            echo "base64 НЕ декодируется:"; cat /tmp/b64err; exit 1
+          fi
           chmod 600 ~/.ssh/deploy_key
+          echo "декодировано байт: $(wc -c < ~/.ssh/deploy_key) (ожидается ~411)"
+          echo "первые 30 байт файла:"; head -c 30 ~/.ssh/deploy_key | od -c | head -3
           ssh-keygen -y -f ~/.ssh/deploy_key > /dev/null && echo "ключ валиден"
 
       - name: Add server to known_hosts
