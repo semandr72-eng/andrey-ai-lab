@@ -89,6 +89,16 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
 
+class ChatLog(db.Model):
+    """Диалог с чат-ассистентом: вопрос посетителя и ответ ассистента."""
+    __tablename__ = 'chat_log'
+    id = db.Column(db.Integer, primary_key=True)
+    question = db.Column(db.Text, nullable=False)
+    answer = db.Column(db.Text, nullable=False)
+    ip = db.Column(db.String(45), nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+
+
 class ContactMessage(db.Model):
     """Заявка из формы обратной связи."""
     id = db.Column(db.Integer, primary_key=True)
@@ -522,6 +532,11 @@ def chat():
         return jsonify({'error': 'Не удалось получить ответ. Попробуйте позже или напишите в Telegram @a7onoff72'}), 503
 
     app.logger.info('Чат-ассистент: вопрос — %.100s', message)
+    try:
+        db.session.add(ChatLog(question=message, answer=answer, ip=request.remote_addr))
+        db.session.commit()
+    except Exception as e:
+        app.logger.error('Не удалось сохранить диалог чата: %s', e)
     return jsonify({'answer': answer})
 
 
@@ -562,6 +577,17 @@ def admin_dashboard():
         page=page, per_page=20, error_out=False
     )
     return render_template('admin/dashboard.html', messages=messages)
+
+
+@app.route('/admin/chat-log/')
+@login_required
+def admin_chat_log():
+    """История диалогов с чат-ассистентом."""
+    page = request.args.get('page', 1, type=int)
+    logs = ChatLog.query.order_by(ChatLog.created_at.desc()).paginate(
+        page=page, per_page=50, error_out=False
+    )
+    return render_template('admin/chat_log.html', logs=logs)
 
 
 @app.route('/admin/messages/<int:message_id>/read/', methods=['POST'])

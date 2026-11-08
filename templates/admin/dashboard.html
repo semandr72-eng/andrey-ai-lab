@@ -13,7 +13,10 @@
                 <span class="section-number">00</span>
                 <h1 class="page-title">Заявки</h1>
             </div>
-            <a href="{{ url_for('admin_logout') }}" class="btn btn--secondary">Выйти</a>
+            <div class="admin-actions">
+                <a href="{{ url_for('admin_chat_log') }}" class="btn btn--secondary">Диалоги чата</a>
+                <a href="{{ url_for('admin_logout') }}" class="btn btn--secondary">Выйти</a>
+            </div>
         </div>
 
         {% if messages.items %}

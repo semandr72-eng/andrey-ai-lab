@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Диалоги чата — Andrey AI Lab{% endblock %}
+
+{% block meta_description %}История диалогов с чат-ассистентом Andrey AI Lab.{% endblock %}
+
+{% block content %}
+
+<section class="section admin-section">
+    <div class="container">
+        <div class="admin-header">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h1 class="page-title">Диалоги чата</h1>
+            </div>
+            <div class="admin-actions">
+                <a href="{{ url_for('admin_dashboard') }}" class="btn btn--secondary">Заявки</a>
+                <a href="{{ url_for('admin_logout') }}" class="btn btn--secondary">Выйти</a>
+            </div>
+        </div>
+
+        {% if logs.items %}
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Дата</th>
+                            <th>Вопрос</th>
+                            <th>Ответ</th>
+                            <th>IP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for log in logs.items %}
+                        <tr>
+                            <td data-label="ID">{{ log.id }}</td>
+                            <td data-label="Дата">{{ log.created_at.strftime('%d.%m.%Y %H:%M') }}</td>
+                            <td data-label="Вопрос">
+                                <div class="admin-message">{{ log.question }}</div>
+                            </td>
+                            <td data-label="Ответ">
+                                <div class="admin-message">{{ log.answer }}</div>
+                            </td>
+                            <td data-label="IP">{{ log.ip or '—' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% if logs.pages > 1 %}
+            <nav class="pagination" aria-label="Страницы диалогов">
+                {% if logs.has_prev %}
+                    <a href="{{ url_for('admin_chat_log', page=logs.prev_num) }}" class="btn btn--ghost">← Назад</a>
+                {% endif %}
+                <span class="pagination__info">Страница {{ logs.page }} из {{ logs.pages }}</span>
+                {% if logs.has_next %}
+                    <a href="{{ url_for('admin_chat_log', page=logs.next_num) }}" class="btn btn--ghost">Вперёд →</a>
+                {% endif %}
+            </nav>
+            {% endif %}
+        {% else %}
+            <p class="admin-empty">Диалогов пока нет.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
