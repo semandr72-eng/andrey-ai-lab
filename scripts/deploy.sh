@@ -13,6 +13,11 @@ fi
 
 .venv/bin/pip install -q -r requirements.txt
 
+# Подгружаем секреты из .env для проверки конфигурации
+set -a
+. ./.env
+set +a
+
 # Проверяем, что конфигурация в порядке (ADMIN_PASSWORD задан и т.п.)
 .venv/bin/python -c "from config import Config; print('config OK')"
 
