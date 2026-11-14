@@ -1,0 +1,58 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="420" fill="#F3F3F3"/>
+
+  <!-- метки регистрации -->
+  <path d="M36 44 V36 H44" stroke="#D0D0D0"/>
+  <path d="M604 44 V36 H596" stroke="#D0D0D0"/>
+  <path d="M36 376 V384 H44" stroke="#D0D0D0"/>
+  <path d="M604 376 V384 H596" stroke="#D0D0D0"/>
+
+  <text x="70" y="60" font-family="JetBrains Mono, monospace" font-size="13" fill="#555">10 / UK BOT</text>
+
+  <!-- сообщение жителя -->
+  <rect x="56" y="88" width="250" height="64" rx="16" fill="white" stroke="#E5E5E5"/>
+  <text x="76" y="116" font-family="JetBrains Mono, monospace" font-size="11" fill="#111">протекает труба над</text>
+  <text x="76" y="134" font-family="JetBrains Mono, monospace" font-size="11" fill="#111">ванной, завтра в 17</text>
+
+  <!-- пайплайн -->
+  <rect x="56" y="188" width="128" height="88" rx="14" fill="white" stroke="#E5E5E5"/>
+  <text x="120" y="216" font-family="JetBrains Mono, monospace" font-size="10" fill="#0D9488" text-anchor="middle">DIALOG</text>
+  <text x="120" y="236" font-family="JetBrains Mono, monospace" font-size="10" fill="#555" text-anchor="middle">gigachat</text>
+  <text x="120" y="254" font-family="JetBrains Mono, monospace" font-size="10" fill="#555" text-anchor="middle">natural lang</text>
+
+  <rect x="212" y="188" width="128" height="88" rx="14" fill="white" stroke="#E5E5E5"/>
+  <text x="276" y="216" font-family="JetBrains Mono, monospace" font-size="10" fill="#0D9488" text-anchor="middle">EXTRACT</text>
+  <text x="276" y="236" font-family="JetBrains Mono, monospace" font-size="10" fill="#555" text-anchor="middle">фио · телефон</text>
+  <text x="276" y="254" font-family="JetBrains Mono, monospace" font-size="10" fill="#555" text-anchor="middle">адрес · дата</text>
+
+  <rect x="368" y="188" width="128" height="88" rx="14" fill="white" stroke="#E5E5E5"/>
+  <text x="432" y="216" font-family="JetBrains Mono, monospace" font-size="10" fill="#0D9488" text-anchor="middle">ENCRYPT</text>
+  <text x="432" y="236" font-family="JetBrains Mono, monospace" font-size="10" fill="#555" text-anchor="middle">fernet</text>
+  <text x="432" y="254" font-family="JetBrains Mono, monospace" font-size="10" fill="#555" text-anchor="middle">aes-128 + hmac</text>
+
+  <path d="M184 232 H212" stroke="#C0C0C0" stroke-width="1.5"/>
+  <path d="M208 227 L216 232 L208 237" stroke="#C0C0C0" stroke-width="1.5" fill="none"/>
+  <path d="M340 232 H368" stroke="#C0C0C0" stroke-width="1.5"/>
+  <path d="M364 227 L372 232 L364 237" stroke="#C0C0C0" stroke-width="1.5" fill="none"/>
+
+  <path d="M181 152 V188" stroke="#C0C0C0" stroke-width="1.5"/>
+  <path d="M176 184 L181 192 L186 184" stroke="#C0C0C0" stroke-width="1.5" fill="none"/>
+  <path d="M432 276 V300" stroke="#C0C0C0" stroke-width="1.5"/>
+  <path d="M427 296 L432 304 L437 296" stroke="#C0C0C0" stroke-width="1.5" fill="none"/>
+
+  <!-- карточка заявки диспетчеру -->
+  <rect x="316" y="304" width="288" height="72" rx="16" fill="white" stroke="#E5E5E5"/>
+  <text x="336" y="330" font-family="JetBrains Mono, monospace" font-size="11" fill="#111">заявка → диспетчеру</text>
+  <text x="336" y="352" font-family="JetBrains Mono, monospace" font-size="10" fill="#0D9488">сантехника · завтра 17:00</text>
+
+  <!-- комплаенс 152-ФЗ -->
+  <rect x="56" y="304" width="200" height="72" rx="14" fill="white" stroke="#E5E5E5"/>
+  <text x="72" y="328" font-family="JetBrains Mono, monospace" font-size="10" fill="#0D9488">152-ФЗ</text>
+  <text x="72" y="346" font-family="JetBrains Mono, monospace" font-size="10" fill="#555">согласие /start</text>
+  <text x="72" y="364" font-family="JetBrains Mono, monospace" font-size="10" fill="#555">удаление /delete</text>
+  <path d="M256 340 H316" stroke="#C0C0C0" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+  <text x="330" y="112" font-family="JetBrains Mono, monospace" font-size="11" fill="#888">aiogram 3 · long polling</text>
+  <text x="330" y="132" font-family="JetBrains Mono, monospace" font-size="11" fill="#888">sqlite + fernet</text>
+  <text x="330" y="152" font-family="JetBrains Mono, monospace" font-size="11" fill="#888">gigachat · серверы РФ</text>
+</svg>
